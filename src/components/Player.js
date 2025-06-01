@@ -10,7 +10,7 @@ function Player() {
   const body = new THREE.Mesh(
     new THREE.BoxGeometry(15, 15, 20),
     new THREE.MeshLambertMaterial({
-      color: "white",
+      color: "aqua",
       flatShading: true,
     })
   );
@@ -22,7 +22,7 @@ function Player() {
   const cap = new THREE.Mesh(
     new THREE.BoxGeometry(2, 4, 2),
     new THREE.MeshLambertMaterial({
-      color: 0xf0619a,
+      color: "pink",
       flatShading: true,
     })
   );
