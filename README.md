@@ -1,13 +1,13 @@
-# Crossy Roads Game
+🚧 Crossy Roads 3D Game
+Welcome to the Crossy Roads 3D Game, a modern, web-based reimagining of the classic arcade-style hit! This version is built using React, Three.js, and componentized architecture to give players an engaging and dynamic experience.  
 
-Welcome to the **Crossy Roads Game**! This project is a web-based implementation of the classic arcade-style game where players navigate their character across roads, rivers, and other obstacles while avoiding collisions. Visit the site : https://crossy-roads.netlify.app
+Visit the site : https://crossyroads-saketdb.vercel.app/
 
 ## Features
 
-- **Responsive Design**: Playable on both desktop and mobile devices.
-- **Dynamic Obstacles**: Cars, logs, and other moving objects to challenge the player.
+- **Responsive Design**: Responsive for both desktop and mobile devices.
+- **Dynamic Obstacles**: Cars, trees, and other objects to challenge the player.
 - **Score Tracking**: Keep track of your high score.
-- **Customizable Characters**: Choose from a variety of characters to play with.
 - **Engaging Graphics**: Simple yet visually appealing design.
 
 ## Technologies Used
@@ -15,33 +15,17 @@ Welcome to the **Crossy Roads Game**! This project is a web-based implementation
 - **HTML5**: Structure of the game.
 - **CSS3**: Styling and animations.
 - **JavaScript**: Game logic and interactivity.
+- **React**: Front-end framework for building the user interface.
+- **3JS**: To set the camera and give the game a 3D feel
 
 ## How to Play
 
-1. Use the arrow keys (or swipe gestures on mobile) to move your character.
+1. Use the arrow keys to move your character.
 2. Avoid obstacles like cars and rivers.
-3. Cross as many roads as possible to increase your score.
-4. Try to beat your high score!
-
-## Installation
-
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/ThisIsIAmAryan/Crossy-Roads-Game.git
-    ```
-2. Navigate to the project directory:
-    ```bash
-    cd Crossy-Roads-Game
-    ```
-3. Open `index.html` in your browser to start playing.
+3. Collect Black Spheres to gain immunity for 7 seconds.
+4. Cross as many roads as possible to increase your score.
+5. Try to beat your high score!
 
 ## Contributing
 
 Contributions are welcome! If you'd like to improve the game or add new features, feel free to fork the repository and submit a pull request.
-
-## Acknowledgments
-
-- Inspired by the original Crossy Road game.
-- Thanks to all contributors and open-source libraries used in this project.
-
-Enjoy the game and have fun crossing the roads!
