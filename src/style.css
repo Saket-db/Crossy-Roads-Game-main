@@ -74,14 +74,14 @@ canvas.game {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white;
+    background-color: aqua;
     padding: 20px;
     border-radius: 5%;
     border: black 3px solid;
   }
 
   button {
-    background-color: rgba(255, 0, 0, 0.752);
+    background-color: pink;
     padding: 20px 50px 20px 50px;
     font-family: inherit;
     font-size: inherit;

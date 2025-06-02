@@ -3,6 +3,10 @@ import { endsUpInValidPosition } from "../utilities/endsUpInValidPosition";
 import { metadata as rows, addRows } from "./Map";
 
 export const player = Player();
+export const playerState = {
+  isInvincible: false,
+  invincibilityEndTime: 0,
+};
 
 function Player() {
   const player = new THREE.Group();
@@ -56,6 +60,10 @@ export function initializePlayer() {
 
   // Clear the moves queue
   movesQueue.length = 0;
+
+  // Reset invincibility state
+  playerState.isInvincible = false;
+  playerState.invincibilityEndTime = 0;
 }
 
 export function queueMove(direction) {
@@ -85,4 +93,33 @@ export function stepCompleted() {
 
   const scoreDOM = document.getElementById("score");
   if (scoreDOM) scoreDOM.innerText = position.currentRow.toString();
+}
+
+export function setInvincible(durationMs) {
+  playerState.isInvincible = true;
+  playerState.invincibilityEndTime = performance.now() + durationMs;
+
+  // Visual feedback: change player body color
+  // Access the body mesh: player -> group -> body
+  const bodyMesh = player.children[0].children[0];
+  if (bodyMesh && bodyMesh.material) {
+    bodyMesh.material.color.set("yellow");
+    // Add emissive glow for better visibility
+    bodyMesh.material.emissive.set(0xffff00);
+    bodyMesh.material.emissiveIntensity = 0.3;
+  }
+}
+
+export function updatePlayerState() {
+  if (playerState.isInvincible && performance.now() > playerState.invincibilityEndTime) {
+    playerState.isInvincible = false;
+
+    // Reset player color
+    const bodyMesh = player.children[0].children[0];
+    if (bodyMesh && bodyMesh.material) {
+      bodyMesh.material.color.set("aqua");
+      bodyMesh.material.emissive.set(0x000000);
+      bodyMesh.material.emissiveIntensity = 0;
+    }
+  }
 }
