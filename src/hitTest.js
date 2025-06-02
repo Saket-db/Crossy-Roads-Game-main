@@ -13,26 +13,37 @@ export function hitTest() {
   const row = rows[position.currentRow - 1];
   if (!row) return;
 
-  // === Invincibility pickup (check actual 3D row)
-  const powerupRow = map.children.find(
-    (child) => child.userData?.rowIndex === position.currentRow
-  );
-
-  if (powerupRow) {
-    const powerup = powerupRow.children.find(
-      (obj) => obj.name === "invincibility"
+  // === Invincibility pickup (check current row and adjacent rows)
+  for (let rowOffset = -1; rowOffset <= 1; rowOffset++) {
+    const checkRow = position.currentRow + rowOffset;
+    const powerupRow = map.children.find(
+      (child) => child.userData?.rowIndex === checkRow
     );
 
-    if (powerup) {
-      // Check if player is on the same tile as the powerup
-      const powerupTileIndex = powerup.userData?.tileIndex;
-      
-      console.log(`Player tile: ${position.currentTile}, Powerup tile: ${powerupTileIndex}, Currently invincible: ${playerState.isInvincible}`); // Debug log
-      
-      if (powerupTileIndex === position.currentTile && !playerState.isInvincible) {
-        console.log("Collecting invincibility powerup!"); // Debug log
-        setInvincible(7000); // 7 seconds
-        powerup.parent.remove(powerup);
+    if (powerupRow) {
+      const powerup = powerupRow.children.find(
+        (obj) => obj.name === "invincibility"
+      );
+
+      if (powerup && !playerState.isInvincible) {
+        // Use 3D distance check instead of exact tile matching
+        const playerPos = new THREE.Vector3();
+        player.getWorldPosition(playerPos);
+        
+        const powerupPos = new THREE.Vector3();
+        powerup.getWorldPosition(powerupPos);
+        
+        const distance = playerPos.distanceTo(powerupPos);
+        
+        console.log(`Distance to powerup: ${distance.toFixed(2)}, Player pos: ${playerPos.x.toFixed(1)}, Powerup pos: ${powerupPos.x.toFixed(1)}`);
+        
+        // Collect if within 20 units (adjustable)
+        if (distance < 20) {
+          console.log("Collecting invincibility powerup!");
+          setInvincible(7000); // 7 seconds
+          powerup.parent.remove(powerup);
+          break; // Exit the loop once we collect a powerup
+        }
       }
     }
   }
