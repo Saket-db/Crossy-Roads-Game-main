@@ -6,7 +6,7 @@ import { player, initializePlayer } from "./components/Player";
 import { map, initializeMap } from "./components/Map";
 import { animateVehicles } from "./animateVehicles";
 import { animatePlayer } from "./animatePlayer";
-import { hitTest } from "./hitTest";
+import { hitTest, resetGameOver } from "./hitTest";
 import "./style.css";
 import "./collectUserInput";
 
@@ -24,6 +24,8 @@ player.add(dirLight);
 // Setup camera and renderer
 const camera = Camera();
 player.add(camera);
+let gameOver = false;
+
 
 const renderer = Renderer();
 document.body.appendChild(renderer.domElement);
@@ -52,10 +54,12 @@ document
 
 function initializeGame() {
   initializePlayer();
+   resetGameOver();
   initializeMap();
 
   if (scoreDOM) scoreDOM.innerText = "0";
   if (resultDOM) resultDOM.style.visibility = "hidden";
+  gameOver = false;
 }
 
 renderer.setAnimationLoop(() => {
